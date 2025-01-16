@@ -160,3 +160,87 @@ MIT License
 ## 贡献指南
 
 欢迎提交 Issue 和 Pull Request！
+
+<div align="center">
+    <img src="static/img/logo.png" alt="疆旅精灵 AI Logo" width="200" style="margin: 20px 0;">
+    <p>🌟 智能新疆旅游助手 | Your Smart Xinjiang Travel Assistant 🌟</p>
+</div>
+
+## 📝 项目介绍
+
+疆旅精灵 AI 是一个基于人工智能的新疆旅游助手，旨在帮助游客更好地规划新疆旅行，了解当地文化和景点。通过自然语言交互，为用户提供个性化的旅游建议和信息。
+
+### ✨ 主要功能
+
+- 🗣️ **智能对话**: 通过自然语言与 AI 助手交流，获取旅游信息
+- 🎤 **语音交互**: 支持语音输入和语音播报，提供更便捷的交互方式
+- 🗺️ **旅行规划**: 根据用户需求推荐景点、路线和行程安排
+- 📚 **文化解析**: 深入了解新疆的历史文化、民族特色和地方习俗
+- 💾 **会话保存**: 支持保存和导出聊天记录，方便后续查阅
+
+## 🚀 快速开始
+
+### 环境要求
+
+- Python 3.9+
+- Flask
+- OpenAI API
+- 其他依赖见 requirements.txt
+
+### 安装步骤
+
+1. 克隆仓库
+```bash
+git clone https://github.com/acctzsy198/xjtravel-ai.github.io.git
+cd xjtravel-ai.github.io
+```
+
+2. 安装依赖
+```bash
+pip install -r requirements.txt
+```
+
+3. 配置环境变量
+```bash
+cp .env.example .env
+# 编辑 .env 文件，填入必要的配置信息
+```
+
+4. 运行应用
+```bash
+python web_server.py
+```
+
+## 🛠️ 技术架构
+
+- 前端：HTML5, TailwindCSS, JavaScript
+- 后端：Python Flask
+- AI 模型：OpenAI GPT
+- 数据存储：SQLite
+- 语音处理：Web Speech API
+
+## 📖 使用指南
+
+1. 访问网页后，可以通过文字或语音与 AI 助手交流
+2. 询问关于新疆旅游的任何问题，如景点推荐、行程规划、文化习俗等
+3. 可以保存重要的对话内容，方便后续查看
+4. 支持导出聊天记录功能
+
+## 🤝 贡献指南
+
+欢迎提交 Issue 和 Pull Request 来帮助改进项目。
+
+## 📄 许可证
+
+本项目采用 MIT 许可证 - 详见 [LICENSE](LICENSE) 文件
+
+## 👥 联系方式
+
+- GitHub: [@acctzsy198](https://github.com/acctzsy198)
+- 项目主页: [https://acctzsy198.github.io/xjtravel-ai.github.io](https://acctzsy198.github.io/xjtravel-ai.github.io)
+
+---
+
+<div align="center">
+    <p>Made with ❤️ by acctzsy198</p>
+</div>
