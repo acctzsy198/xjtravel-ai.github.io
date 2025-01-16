@@ -21,11 +21,18 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
           
-      - name: Copy static files
+      - name: Create dist directory
         run: |
           mkdir -p dist
-          cp -r templates/* dist/
-          cp -r static/* dist/
+          cp -r static/* dist/ || true
+          cp -r templates/* dist/ || true
+          cp index.html dist/ || true
+          
+      - name: Create index.html if not exists
+        run: |
+          if [ ! -f dist/index.html ]; then
+            cp templates/index.html dist/index.html || true
+          fi
           
       - name: Build and Deploy
         uses: JamesIves/github-pages-deploy-action@4.1.4
