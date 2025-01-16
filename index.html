@@ -1,18 +1,55 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh" class="light theme-xinjiang">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>疆旅精灵 AI</title>
-    <link rel="stylesheet" href="static/css/style.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+        }
+        .title {
+            font-size: 2.5rem;
+            color: #1a365d;
+            margin-bottom: 2rem;
+        }
+        .description {
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin-bottom: 2rem;
+        }
+        .button {
+            background-color: #4299e1;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #3182ce;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-[#f8fafc]">
     <div class="container">
-        <h1>疆旅精灵 AI</h1>
-        <div id="content">
-            <!-- 这里会加载 templates/index.html 的内容 -->
-            <iframe src="templates/index.html" style="width: 100%; height: 100vh; border: none;"></iframe>
-        </div>
+        <h1 class="title">疆旅精灵 AI</h1>
+        <p class="description">
+            欢迎使用疆旅精灵 AI！这是一个智能旅游助手，可以帮助您规划新疆旅行，了解当地文化和景点。
+            <br><br>
+            目前这是一个静态页面，完整功能请访问我们的主服务器。
+        </p>
+        <a href="https://github.com/acctzsy198/xjtravel-ai.github.io" class="button">
+            访问 GitHub 仓库
+        </a>
     </div>
 </body>
 </html>
