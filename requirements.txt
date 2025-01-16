@@ -14,3 +14,5 @@ python-docx==1.0.0
 markdown==3.5.1
 chromadb==0.4.22
 PyAudio==0.2.13
+gunicorn==21.2.0
+eventlet==0.33.3
