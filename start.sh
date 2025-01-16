@@ -25,11 +25,15 @@ mkdir -p exports
 mkdir -p vector_store
 mkdir -p templates
 
-# 启动程序
+
+
+
+
+
 echo "启动智能助手..."
 if [ "$1" == "--web" ]; then
     echo "启动Web界面模式..."
-    python3 main.py --web
+    python3 web_server.py
 elif [ "$1" == "--voice" ]; then
     echo "启动语音交互模式..."
     python3 main.py --voice

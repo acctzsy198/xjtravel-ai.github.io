@@ -1,0 +1,10 @@
+t=2025-01-17T00:36:08+0800 lvl=info msg="no configuration paths supplied"
+t=2025-01-17T00:36:08+0800 lvl=info msg="using configuration at default config path" path="/Users/zhoushuyong/Library/Application Support/ngrok/ngrok.yml"
+t=2025-01-17T00:36:08+0800 lvl=info msg="open config file" path="/Users/zhoushuyong/Library/Application Support/ngrok/ngrok.yml" err=nil
+t=2025-01-17T00:36:08+0800 lvl=info msg="starting web service" obj=web addr=127.0.0.1:4040 allow_hosts=[]
+t=2025-01-17T00:36:09+0800 lvl=info msg="client session established" obj=tunnels.session
+t=2025-01-17T00:36:09+0800 lvl=info msg="tunnel session started" obj=tunnels.session
+t=2025-01-17T00:36:09+0800 lvl=info msg="started tunnel" obj=tunnels name=command_line addr=http://localhost:8080 url=https://5dcc-120-205-247-166.ngrok-free.app
+t=2025-01-17T00:37:20+0800 lvl=info msg="join connections" obj=join id=16c971ddd774 l=127.0.0.1:8080 r=221.181.48.166:39026
+t=2025-01-17T00:37:21+0800 lvl=info msg="join connections" obj=join id=a145bf8bf717 l=127.0.0.1:8080 r=221.181.48.166:39026
+t=2025-01-17T00:37:22+0800 lvl=info msg="join connections" obj=join id=5a762ed74846 l=127.0.0.1:8080 r=221.181.48.166:49006
