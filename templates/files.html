@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>文件浏览器</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #3b82f6;
+            --accent-color: #60a5fa;
+            --background-color: #1e293b;
+            --surface-color: #334155;
+            --text-color: #f8fafc;
+        }
+
+        body {
+            background: var(--background-color);
+            color: var(--text-color);
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .file-browser {
+            background: var(--surface-color);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            margin: 20px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .breadcrumb {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--primary-color);
+        }
+
+        .file-list {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .file-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .file-item:last-child {
+            border-bottom: none;
+        }
+
+        .file-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .file-icon {
+            width: 24px;
+            text-align: center;
+            margin-right: 12px;
+        }
+
+        .file-name {
+            flex: 1;
+            font-weight: 500;
+        }
+
+        .file-size {
+            width: 100px;
+            text-align: right;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .file-date {
+            width: 180px;
+            text-align: right;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .directory {
+            color: var(--accent-color);
+            cursor: pointer;
+        }
+
+        .loading {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px 40px;
+            border-radius: 8px;
+            color: white;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto">
+        <div class="file-browser">
+            <div class="breadcrumb" id="breadcrumb">
+                <i class="fas fa-home"></i>
+                <span class="mx-2">/</span>
+            </div>
+            <div class="file-list" id="file-list">
+                <!-- 文件列表将通过JavaScript动态加载 -->
+            </div>
+        </div>
+    </div>
+    
+    <div class="loading" id="loading">
+        <i class="fas fa-spinner fa-spin mr-2"></i> 加载中...
+    </div>
+
+    <script>
+        // 格式化文件大小
+        function formatSize(size) {
+            if (size === null) return '-';
+            const units = ['B', 'KB', 'MB', 'GB', 'TB'];
+            let i = 0;
+            while (size >= 1024 && i < units.length - 1) {
+                size /= 1024;
+                i++;
+            }
+            return size.toFixed(1) + ' ' + units[i];
+        }
+
+        // 加载文件列表
+        async function loadFiles(path = '.') {
+            const loading = document.getElementById('loading');
+            const fileList = document.getElementById('file-list');
+            const breadcrumb = document.getElementById('breadcrumb');
+            
+            loading.style.display = 'block';
+            
+            try {
+                const response = await fetch(`/api/files?path=${encodeURIComponent(path)}`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    // 更新面包屑
+                    const parts = path.split('/');
+                    breadcrumb.innerHTML = '<i class="fas fa-home"></i>';
+                    let currentPath = '';
+                    
+                    parts.forEach((part, index) => {
+                        if (part === '.') return;
+                        currentPath += (currentPath ? '/' : '') + part;
+                        breadcrumb.innerHTML += `
+                            <span class="mx-2">/</span>
+                            <a href="#" onclick="loadFiles('${currentPath}')">${part}</a>
+                        `;
+                    });
+                    
+                    // 更新文件列表
+                    fileList.innerHTML = data.items.map(item => `
+                        <div class="file-item">
+                            <div class="file-icon">
+                                <i class="fas ${item.type === 'directory' ? 'fa-folder text-blue-400' : 'fa-file text-gray-400'}"></i>
+                            </div>
+                            <div class="file-name ${item.type === 'directory' ? 'directory' : ''}" 
+                                 onclick="${item.type === 'directory' ? `loadFiles('${item.path}')` : ''}">
+                                ${item.name}
+                            </div>
+                            <div class="file-size">${formatSize(item.size)}</div>
+                            <div class="file-date">${item.modified}</div>
+                        </div>
+                    `).join('');
+                } else {
+                    throw new Error(data.error || '加载失败');
+                }
+            } catch (error) {
+                fileList.innerHTML = `
+                    <div class="p-4 text-red-500">
+                        <i class="fas fa-exclamation-triangle mr-2"></i>
+                        ${error.message}
+                    </div>
+                `;
+            } finally {
+                loading.style.display = 'none';
+            }
+        }
+
+        // 页面加载完成后加载文件列表
+        document.addEventListener('DOMContentLoaded', () => {
+            loadFiles();
+        });
+    </script>
+</body>
+</html>
