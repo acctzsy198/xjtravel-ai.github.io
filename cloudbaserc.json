@@ -1,0 +1,29 @@
+{
+  "envId": "请将这里替换为你在控制台看到的环境ID",
+  "framework": {
+    "name": "flask",
+    "plugins": {
+      "client": {
+        "use": "@cloudbase/framework-plugin-website",
+        "inputs": {
+          "buildCommand": "pip install -r requirements.txt",
+          "outputPath": ".",
+          "commands": {
+            "build": "python web_server.py"
+          }
+        }
+      },
+      "server": {
+        "use": "@cloudbase/framework-plugin-container",
+        "inputs": {
+          "serviceName": "xjtravel-ai",
+          "servicePath": "/",
+          "containerPort": 5000,
+          "envVariables": {
+            "ZHIPUAI_API_KEY": "220a64768236ce0b7f07f9fe1261c2e5.jP7y0g3Edxg8ABCG"
+          }
+        }
+      }
+    }
+  }
+}

@@ -8,3 +8,7 @@ t=2025-01-17T00:36:09+0800 lvl=info msg="started tunnel" obj=tunnels name=comman
 t=2025-01-17T00:37:20+0800 lvl=info msg="join connections" obj=join id=16c971ddd774 l=127.0.0.1:8080 r=221.181.48.166:39026
 t=2025-01-17T00:37:21+0800 lvl=info msg="join connections" obj=join id=a145bf8bf717 l=127.0.0.1:8080 r=221.181.48.166:39026
 t=2025-01-17T00:37:22+0800 lvl=info msg="join connections" obj=join id=5a762ed74846 l=127.0.0.1:8080 r=221.181.48.166:49006
+t=2025-01-17T01:01:13+0800 lvl=info msg="join connections" obj=join id=f75b1cffb92d l=127.0.0.1:8080 r=120.205.247.166:45868
+t=2025-01-17T01:01:14+0800 lvl=info msg="join connections" obj=join id=cec97dd24272 l=127.0.0.1:8080 r=120.205.247.166:45868
+t=2025-01-17T01:01:14+0800 lvl=info msg="join connections" obj=join id=29ed13c6e776 l=127.0.0.1:8080 r=120.205.247.166:45880
+t=2025-01-17T01:01:22+0800 lvl=info msg="join connections" obj=join id=81d3940388e0 l=127.0.0.1:8080 r=120.205.247.166:48208
